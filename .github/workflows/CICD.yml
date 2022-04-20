@@ -14,25 +14,15 @@ env:
   
 jobs:          
   continuous-deploy:
-    needs: continuous-integration
     runs-on: [ self-hosted, iplease-eureka ]
     steps: 
+      - uses: actions/checkout@v3
       - name: login to ghcr
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
-          
-      - name: run docker
-        run: |
-          docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi ${{ env.DOCKER_IMAGE }}:latest
-          docker run -d -p 10010: 10010 -network iplease --ip 172.23.0.101 --name ${{ env.NAME }} --restart always ${{ env.DOCKER_IMAGE }}: latest
-          
-  continuous-integration:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
       # setup java
       - name: setup JDK 17
         uses: actions/setup-java@v2
@@ -82,3 +72,9 @@ jobs:
           builder: ${{ steps.buidx.outputs.name }}
           push: true
           tags: ${{ env.DOCKER_IMAGE }}:latest
+          
+      - name: run docker
+        run: |
+          docker stop ${{ env.NAME }} && docker rm ${{ env.NAME }} && docker rmi ${{ env.DOCKER_IMAGE }}:latest
+          docker run -d -p 10010: 10010 -network iplease --ip 172.23.0.101 --name ${{ env.NAME }} --restart always ${{ env.DOCKER_IMAGE }}: latest
+
