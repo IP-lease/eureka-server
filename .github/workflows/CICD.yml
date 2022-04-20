@@ -22,7 +22,7 @@ jobs:
       - name: log files
         run: |
           echo | pwd
-          echo | ll
+          echo | ls
       
       
       - name: setup docker buildx
