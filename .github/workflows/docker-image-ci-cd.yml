@@ -63,8 +63,13 @@ jobs:
         run: sudo docker pull ${DOCKER_IMAGE_NAME}:latest
       - name: run docker container from image
         env:
-          DOCKER_SERVER_PORT: 10010
-          DOCKER_SERVER_IP: ${{ secrets.DOCKER_IP }}
+          INPUT_DOCKER_SERVER_PORT: 10010
+          INPUT_DOCKER_SERVER_IP: ${{ secrets.DOCKER_IP }}
         run: |
           docker stop ${DOCKER_CONTAINER_NAME} && docker rm ${DOCKER_CONTAINER_NAME}
-          docker run -d -p 10010:10010 --network ${{ secrets.DOCKER_NETWORK }} --ip ${{ secrets.DOCKER_IP }} --name ${DOCKER_CONTAINER_NAME} --restart always ${DOCKER_IMAGE_NAME}:latest
+          docker run -d -p 10010:10010 \
+          --network ${{ secrets.DOCKER_NETWORK }} \
+          --ip ${{ secrets.DOCKER_IP }} \
+          --name ${DOCKER_CONTAINER_NAME} \
+          --restart always \
+          ${DOCKER_IMAGE_NAME}:latest
