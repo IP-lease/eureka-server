@@ -43,6 +43,12 @@ jobs:
         run: |
           echo | pwd
           echo | ls
+          cd ./build
+          echo | ls
+          cd ./libs
+          echo | ls
+          cd ../../
+          echo | ls
       
       - name: setup docker buildx
         id: buildx
