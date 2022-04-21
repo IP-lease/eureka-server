@@ -68,7 +68,7 @@ jobs:
         run: |
           docker stop ${DOCKER_CONTAINER_NAME} && docker rm ${DOCKER_CONTAINER_NAME}
           docker run -d -p 10010:10010 \
-          --env-file=${{ secrets.DOCKER_ENV_FILE_PATH }}\
+          --env-file=${{ secrets.DOCKER_ENV_FILE_PATH }} \
           --network ${{ secrets.DOCKER_NETWORK }} \
           --ip ${{ secrets.DOCKER_IP }} \
           --name ${DOCKER_CONTAINER_NAME} \
