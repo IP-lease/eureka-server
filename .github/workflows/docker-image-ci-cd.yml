@@ -8,6 +8,8 @@ on:
 env:
   DOCKER_IMAGE_NAME: devraul/iplease-eureka-server
   DOCKER_CONTAINER_NAME: eureka-server
+  INPUT_DOCKER_SERVER_PORT: 10010
+  INPUT_DOCKER_SERVER_IP: ${{ secrets.DOCKER_IP }}
 jobs:
   ci:
     runs-on: ubuntu-latest
