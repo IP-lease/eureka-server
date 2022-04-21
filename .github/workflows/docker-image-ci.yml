@@ -28,7 +28,7 @@ jobs:
     - name: build with gradle
       run: ./gradlew build -x test
     - name: login to docker
-      run: sudo docker login -u ${{ secret.DOCKER_USERNAME }} -p ${{ secret.DOCKER_PASSWORD }}
+      run: sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: build docker image
       run: sudo docker build --tag ${DOCKER_IMAGE_NAME} .
     - name: push docker image
