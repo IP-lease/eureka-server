@@ -1,0 +1,11 @@
+server:
+  port: ${INPUT_DOCKER_SERVER_PORT}
+  address: ${INPUT_DOCKER_SERVER_IP}
+eureka:
+  instance:
+    hostname: ${server.port}
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
