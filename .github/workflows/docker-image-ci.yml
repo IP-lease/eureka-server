@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ master ]
 env:
-  DOCKER_IMAGE_NAME: devraul/iplease-eureka-server:$(date +%s)
+  DOCKER_IMAGE_NAME: devraul/iplease-eureka-server:${GITHUB_RUN_ID}
 jobs:
   build:
     runs-on: ubuntu-latest
