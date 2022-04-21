@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ master ]
 env:
-  DOCKER_IMAGE_NAME: devraul/iplease-eureka-server:${GITHUB_RUN_ID}
+  DOCKER_IMAGE_NAME: devraul/iplease-eureka-server
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,8 +30,8 @@ jobs:
     - name: login to docker
       run: sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: build docker image
-      run: sudo docker build --tag ${DOCKER_IMAGE_NAME} .
+      run: sudo docker build --tag ${DOCKER_IMAGE_NAME}:latest .
     - name: push docker image
-      run: sudo docker push ${DOCKER_IMAGE_NAME}
+      run: sudo docker push ${DOCKER_IMAGE_NAME}:latest
       
       
