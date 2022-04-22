@@ -3,7 +3,7 @@ server:
   address: ${DOCKER_SERVER_IP}
 eureka:
   instance:
-    hostname: ${server.port}
+    hostname: localhost
   client:
     register-with-eureka: false
     fetch-registry: false

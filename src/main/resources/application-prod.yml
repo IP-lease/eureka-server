@@ -1,10 +1,10 @@
 server:
-  port: ${INPUT_DOCKER_SERVER_PORT}
-  address: ${INPUT_DOCKER_SERVER_IP}
+  port: ${DOCKER_SERVER_PORT}
+  address: ${DOCKER_SERVER_IP}
   shutdown: graceful
 eureka:
   instance:
-    hostname: ${server.port}
+    hostname: ${EUREKA_HOSTNAME}
   client:
     register-with-eureka: false
     fetch-registry: false
