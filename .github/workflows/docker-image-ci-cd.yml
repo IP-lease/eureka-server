@@ -9,6 +9,8 @@ env:
   DOCKER_IMAGE_NAME: devraul/iplease-eureka-server
   DOCKER_IMAGE_TAG: ${GITHUB_RUN_ID}
   DOCKER_CONTAINER_NAME: eureka-server
+  DOCKER_CONTAINER_PORT: 10010
+  DOCKER_FORWARD_PORT: 10010
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -26,6 +28,9 @@ jobs:
     # test
     - name: test with gradle
       run: ./gradlew test
+      env: 
+        DOCKER_SERVER_PORT: ${DOCKER_CONTAINER_PORT}
+        DOCKER_SERVER_IP: ${{ secrets.DOCKER_IP }}
     # build
     - name: build with gradle
       run: ./gradlew build -x test
@@ -63,7 +68,7 @@ jobs:
       - name: run docker container from image
         run: |
           docker stop ${DOCKER_CONTAINER_NAME} && docker rm ${DOCKER_CONTAINER_NAME}
-          docker run -d -p 10010:10010 \
+          docker run -d -p ${DOCKER_FORWARD_PORT}:${DOCKER_CONTAINER_PORT} \
           --env-file=${{ secrets.DOCKER_ENV_FILE_PATH }} \
           --network ${{ secrets.DOCKER_NETWORK }} \
           --ip ${{ secrets.DOCKER_IP }} \
