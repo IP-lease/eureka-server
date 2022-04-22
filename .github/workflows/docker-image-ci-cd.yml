@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 env:
   DOCKER_IMAGE_NAME: devraul/iplease-eureka-server
-  DOCKER_IMAGE_TAG: ${{ env.GITHUB_RUN_ID }}
+  DOCKER_IMAGE_TAG: ${GITHUB_RUN_ID}
   DOCKER_CONTAINER_NAME: eureka-server
 jobs:
   ci:
