@@ -4,7 +4,7 @@ server:
   shutdown: graceful
 eureka:
   instance:
-    hostname: ${EUREKA_HOSTNAME}
+    hostname: ${server.port}
   client:
     register-with-eureka: false
     fetch-registry: false
