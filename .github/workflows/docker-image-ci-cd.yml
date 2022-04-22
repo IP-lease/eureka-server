@@ -37,7 +37,7 @@ jobs:
     - name: login to docker
       run: sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
     - name: build docker image
-      run: sudo docker build --tag ${DOCKER_IMAGE_NAME}:${github} .
+      run: sudo docker build --tag ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} .
     - name: push docker image
       run: sudo docker push ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}
   cd:
