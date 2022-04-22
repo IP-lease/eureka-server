@@ -1,6 +1,6 @@
 server:
-  port: ${DOCKER_SERVER_PORT}
-  address: ${DOCKER_SERVER_IP}
+  port: ${SERVER_PORT}
+  address: ${SERVER_IP}
 eureka:
   instance:
     hostname: ${server.port}
