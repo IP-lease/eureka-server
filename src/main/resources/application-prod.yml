@@ -1,6 +1,7 @@
 server:
   port: ${INPUT_DOCKER_SERVER_PORT}
   address: ${INPUT_DOCKER_SERVER_IP}
+  shutdown: graceful
 eureka:
   instance:
     hostname: ${server.port}
